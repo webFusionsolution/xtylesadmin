@@ -1,0 +1,68 @@
+.newProduct {
+  flex: 4;
+}
+
+.addProductForm {
+  margin-top: 10px;
+}
+.banner {
+   padding: 15px;
+   margin: 10px 0;
+}
+p.error {
+  color: red;
+  font-size: 13px;
+}
+.checkbox-group {
+  display: flex;
+  width: 120%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+.checkbox-group input {
+  position: relative;
+  top:2px;
+}
+.banner.success {
+    background-color: rgb(184, 253, 203);
+    border: solid 1px #22fb4d;
+}
+.required.error {
+    border: solid 1px red;
+}
+.banner.error {
+  background-color: rgb(228 168 168);
+  border: solid 1px #ff0000;
+}
+.addProductItem {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.addProductItem > label {
+  color: gray;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.addProductItem > input {
+  padding: 10px;
+}
+
+.addProductItem > select {
+  padding: 10px;
+}
+
+.addProductButton {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: darkblue;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
