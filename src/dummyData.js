@@ -249,3 +249,6 @@ export const userData = [
       price: "$120.00",
     },
   ];
+  export const sizeCheckbox = [
+    "XS","S","M","L","XL","XXL"    
+  ]

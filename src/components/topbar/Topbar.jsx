@@ -3,11 +3,12 @@ import "./topbar.css";
 import { NotificationsNone, Language, Settings } from "@material-ui/icons";
 
 export default function Topbar() {
+  const ASSET = process.env.REACT_APP_ASSETS;
   return (
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo"><img src="../../asset/logo.png"/></span>
+          <span className="logo"><img src={ASSET+'logo.png'}/></span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">

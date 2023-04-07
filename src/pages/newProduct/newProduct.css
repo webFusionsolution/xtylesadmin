@@ -15,10 +15,14 @@ p.error {
 }
 .checkbox-group {
   display: flex;
-  width: 120%;
   justify-content: space-between;
   align-items: center;
   font-size: 15px;
+  flex-wrap: wrap;
+}
+.checkbox-group  > div {
+  flex:1 1 100px;
+  padding: 5px;
 }
 .checkbox-group input {
   position: relative;
@@ -36,7 +40,7 @@ p.error {
   border: solid 1px #ff0000;
 }
 .addProductItem {
-  width: 250px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -65,4 +69,48 @@ p.error {
   color: white;
   font-weight: 600;
   cursor: pointer;
+}
+.btn-bar {
+  padding: 0 0 20px 0;
+}
+.categories_checkbox {
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  /* justify-content: start; */
+  flex-wrap: wrap;
+
+}
+.categories_checkbox label {
+  justify-content: space-around;
+  text-transform: capitalize;
+
+    width: 100%;
+    /* flex: 312px; */
+    /* display: flex; */
+    align-items: normal;
+    padding: 10px;
+    flex: 1 102px;
+   }
+   .add-cate-btn {
+    padding: 10px 0;
+   }
+   .add-cate-placeholder {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+  
+.newProduct .edit-image {
+    width: 100px;
+    height: 150px;
+    background-size: cover;
+    background-position: center center;
+}
+.categories_checkbox label input {
+   margin-right: 5px;
+}
+
+p.success {
+  color: green;
 }

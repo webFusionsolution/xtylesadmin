@@ -8,7 +8,7 @@ export default function Spinner() {
         <>
          <div className="overlay">
                 <div className='spinner'>
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>
 
          </div>

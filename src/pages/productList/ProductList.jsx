@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getProducts } from "../../Redux/apiCalls";
 import Modal from "../../components/popup/modal";
 import { useState } from "react";
+import Topbar from "../../components/topbar/Topbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 export default function ProductList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,8 +22,6 @@ export default function ProductList() {
     setTimeout(() => {
       getProducts(dispatch)
     }, 100);
-
-
   }, [dispatch]);
 
   const handleCancelEvent = () => {
@@ -101,6 +101,10 @@ export default function ProductList() {
 
   return (
     <>
+    <Topbar />
+    <div className="container">
+    <Sidebar /> 
+    
       <div className="productList">
         <button className="add-product-btn"><Link to={'/newProduct'}>Add New Product</Link></button>
         <DataGrid
@@ -108,11 +112,12 @@ export default function ProductList() {
           disableSelectionOnClick
           columns={columns}
           getRowId={(row) => row._id}
-          pageSize={8}
+          pageSize={10}
           checkboxSelection
         />
         {isModalOpen ?  <Modal handleCancelEvent={handleCancelEvent} handleDeleteEvent={handleDeleteEvent} /> : ''}
        
+      </div>
       </div>
     </>
   );

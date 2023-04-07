@@ -1,8 +1,15 @@
 import "./newUser.css";
+import Topbar from "../../components/topbar/Topbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+
 
 export default function NewUser() {
   return (
-    <div className="newUser">
+    <>
+    <Topbar />
+      <div className="container">
+       <Sidebar /> 
+       <div className="newUser">
       <h1 className="newUserTitle">New User</h1>
       <form className="newUserForm">
         <div className="newUserItem">
@@ -50,5 +57,8 @@ export default function NewUser() {
         <button className="newUserButton">Create</button>
       </form>
     </div>
+      </div>
+    </>
+   
   );
 }

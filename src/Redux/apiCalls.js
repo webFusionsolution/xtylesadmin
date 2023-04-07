@@ -55,9 +55,9 @@ export const updateProduct = async (id, product, dispatch) => {
   dispatch(updateProductStart());
   try {
     // it will delete the product if we click
-    const res = await userRequest.update(`/products/${id}`);
+    const res = await userRequest.put(`/products/${id}`, product);
     if (res.data) {
-      dispatch(updateProductSuccess({ id: id, product: product }));
+      dispatch(updateProductSuccess({ id: res.data._id, product: res.data }));
     }
   } catch (err) {
     dispatch(updateProductFailure());
