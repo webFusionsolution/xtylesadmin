@@ -15,33 +15,32 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function App() {
   const [admin, setAdmin] = useState(false);
-  const isLocalStorage = localStorage.getItem("persist:root");
+  const user = useSelector(state => state.user.currentUser);
 
 
   useEffect(() => {
-    if (isLocalStorage) {
-      const user = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user);
-      if(user.currentUser && user.currentUser.isAdmin) {
-         user.currentUser.isAdmin ? setAdmin(true) : setAdmin(false);
-      }
-      
+    if(user){
+        user.isAdmin ? setAdmin(true) : setAdmin(false);
     }
-  }, [isLocalStorage])
+  }, [user])
 
 
   return (
     <Routes>
+    { console.log(admin)}
       {!admin ?
         <>
-           <Route path="/" element={<Login />} />
+           <Route exact path="/" element={<Login />} />
            <Route path="/login" element={<Login />} />
         </>       
         :
         <>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Home />} />
         <Route path="/users" element={ <UserList/> } />
