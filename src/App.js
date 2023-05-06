@@ -32,7 +32,6 @@ function App() {
 
   return (
     <Routes>
-    { console.log(admin)}
       {!admin ?
         <>
            <Route exact path="/" element={<Login />} />

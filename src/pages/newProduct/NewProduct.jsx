@@ -25,6 +25,7 @@ export default function NewProduct() {
   const productMRP = useRef();
   const productIfFeature = useRef();
   const productColor = useRef();
+  const productBrands = useRef();
   const [input, setInput] = useState({});
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
@@ -46,8 +47,10 @@ export default function NewProduct() {
   const [newCategoryInput, setNewCategoryInput] = useState(false);
   const [cateError, setCateError] = useState(false);
   const [cateSuccess, setCateSuccess] = useState(false);
+  const [brands, setBrands] = useState([]);
   const [newImage, setNewImage] = useState(false);
   const [updatedImage, setUpdatedImage] = useState("");
+  const [productBrand, setProductBrand] = useState('');
 
   const product = useSelector((state) =>
     state.product.products.find((product) => product._id === productId));
@@ -115,7 +118,18 @@ export default function NewProduct() {
         }
       } catch (error) { }
     };
+   
+    const getBrands = async () => {
+      try {
+        const res = await userRequest.get("brand/all");
+        if (res.data) {
+          setBrands(res.data);
+
+        }
+      } catch (error) { }
+    };
     getCategories();
+    getBrands();
   }, []);
 
   const handleChange = (e) => {
@@ -123,6 +137,10 @@ export default function NewProduct() {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
+
+  const handleBrandChange = (e) => {
+    setProductBrand(e.target.value);
+  }
 
   const handleFeature = (e) => {
     setFeature(e.target.checked)
@@ -168,6 +186,7 @@ export default function NewProduct() {
     productIfFeature.current.value = "";
     productColor.current.value = "";
     productMRP.current.value = "";
+    productBrands.current.vale = "Select"
   }
   const toLowercase = (str) => {
     return str.toLowerCase();
@@ -274,7 +293,7 @@ export default function NewProduct() {
               cloneObj.img = downloadURL;
               updateProduct(productClone._id, cloneObj, dispatch);
             } else {
-              const product = { ...input, img: downloadURL, categories: cat, feature: feature, color: color, size: size };
+              const product = { ...input, img: downloadURL, categories: cat, feature: feature, color: color, size: size, brand: productBrand };
               addProduct(product, dispatch);
             }
   
@@ -451,6 +470,18 @@ export default function NewProduct() {
                 }
               </div>
 
+            </div>
+            <div className="addProductItem">
+              <label>Brands</label>
+                <select ref={productBrands} id="brand" onChange={(e) => handleBrandChange(e)}>
+                  <option value="select">Select</option>
+                    {brands.length && 
+                        brands.map(item => {
+                          return <option key={item._id} value={item.name}>{item.name}</option>
+                        })
+                    }
+                </select>
+              
             </div>
 
             <div className="addProductItem">

@@ -12,14 +12,21 @@ export default function FeaturedInfo() {
       try {
         const res = await userRequest.get("orders/income");
         if (res.data) {
-          setIncome(res.data);
-          setPerc((res.data[1].total * 100) / res.data[0].total - 100);
+          setIncome(income);          
+          setPercentage(income)
         }
       } catch (error) {}
     };
     getIncome();
   }, []);
+  const setPercentage = (income) => {
+    if(income.length > 1) {
+       setPerc((income[1].total * 100) / income[0].total - 100);
+    } else {
+      setPerc(income[0].total / 100)
+    }
 
+  }
   return (
     <div className="featured">
       <div className="featuredItem">

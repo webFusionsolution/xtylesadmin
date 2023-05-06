@@ -24,7 +24,7 @@ const Login = () => {
    useEffect(() => {
     if(user && user.username) {
       setError(false);
-      navigate("/")
+      //navigate("/")
     }
    }, [user])
    
