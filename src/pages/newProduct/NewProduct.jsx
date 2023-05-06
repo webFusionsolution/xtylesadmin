@@ -118,7 +118,7 @@ export default function NewProduct() {
         }
       } catch (error) { }
     };
-   
+
     const getBrands = async () => {
       try {
         const res = await userRequest.get("brand/all");
@@ -167,8 +167,8 @@ export default function NewProduct() {
   }
 
   const handleUpdateImage = (e) => {
-      e.preventDefault();
-      setNewImage(true);
+    e.preventDefault();
+    setNewImage(true);
   };
   const handleColor = (e) => {
     setColor(e.target.value.split(","));
@@ -186,7 +186,7 @@ export default function NewProduct() {
     productIfFeature.current.value = "";
     productColor.current.value = "";
     productMRP.current.value = "";
-    productBrands.current.vale = "Select"
+    productBrands.current.value = "select"
   }
   const toLowercase = (str) => {
     return str.toLowerCase();
@@ -249,15 +249,15 @@ export default function NewProduct() {
 
   }
   const fileUploadProcess = (exstingImage) => {
-      
+
     //we will upload file and call api
-    if(!exstingImage) {
+    if (!exstingImage) {
       const fileName = new Date().getTime() + file.name;
       const storage = getStorage(app);
       const storageRef = ref(storage, fileName);
-  
+
       const uploadTask = uploadBytesResumable(storageRef, file);
-  
+
       // Register three observers:
       // 1. 'state_changed' observer, called any time the state changes
       // 2. Error observer, called on failure
@@ -296,14 +296,14 @@ export default function NewProduct() {
               const product = { ...input, img: downloadURL, categories: cat, feature: feature, color: color, size: size, brand: productBrand };
               addProduct(product, dispatch);
             }
-  
+
             if (products && !isProductAddFail) {
               windowScrollTop();
               setNewProductAdded(true);
               if (!isEdit) {
                 resetProductForm();
               } else {
-                 setNewImage(false);
+                setNewImage(false);
               }
               setTimeout(() => {
                 setNewProductAdded(false);
@@ -325,7 +325,7 @@ export default function NewProduct() {
         if (!isEdit) {
           resetProductForm();
         } else {
-           setNewImage(false);
+          setNewImage(false);
         }
         setTimeout(() => {
           setNewProductAdded(false);
@@ -335,7 +335,7 @@ export default function NewProduct() {
         setNewProductAdded(false)
       }
     }
-    
+
   }
   const handleClick = (e) => {
     e.preventDefault();
@@ -343,14 +343,14 @@ export default function NewProduct() {
       windowScrollTop();
       return false;
     }
-    if(!isEdit) {
-       fileUploadProcess(false);
-    } else if(isEdit && file) {
-       fileUploadProcess(false);
-    } else if(isEdit && !file){
+    if (!isEdit) {
+      fileUploadProcess(false);
+    } else if (isEdit && file) {
+      fileUploadProcess(false);
+    } else if (isEdit && !file) {
       fileUploadProcess(true);
     }
-   
+
   };
   const updatedProductItems = () => {
     const editedProduct = {};
@@ -383,21 +383,21 @@ export default function NewProduct() {
               <label>Product Image</label>
               {newImage &&
                 <input
-                type="file"
-                id="file"
-                ref={fileType}
-                className="required"
-                onChange={(e) => setFile(e.target.files[0])}
+                  type="file"
+                  id="file"
+                  ref={fileType}
+                  className="required"
+                  onChange={(e) => setFile(e.target.files[0])}
                 />
-              }             
+              }
               {isEdit && !newImage &&
-              <>
-                <div className="edit-image" style={{
+                <>
+                  <div className="edit-image" style={{
                     backgroundImage: `url("${productClone.img}")`
                   }}>
                   </div>
                   <button type="button" onClick={(e) => handleUpdateImage(e)}>Update Image</button>
-              </>                
+                </>
               }
             </div>
 
@@ -473,15 +473,15 @@ export default function NewProduct() {
             </div>
             <div className="addProductItem">
               <label>Brands</label>
-                <select ref={productBrands} id="brand" onChange={(e) => handleBrandChange(e)}>
-                  <option value="select">Select</option>
-                    {brands.length && 
-                        brands.map(item => {
-                          return <option key={item._id} value={item.name}>{item.name}</option>
-                        })
-                    }
-                </select>
-              
+              <select ref={productBrands} id="brand" onChange={(e) => handleBrandChange(e)}>
+                <option value="select">Select</option>
+                {brands.length &&
+                  brands.map(item => {
+                    return <option key={item._id} value={item.name}>{item.name}</option>
+                  })
+                }
+              </select>
+
             </div>
 
             <div className="addProductItem">
@@ -500,6 +500,18 @@ export default function NewProduct() {
                 <div> <input type="checkbox" name="size" onChange={handleSize} value="XL" /> XL</div>
                 <div> <input type="checkbox" name="size" onChange={handleSize} value="XXL" /> XXL</div>
               </div>
+              <br></br>
+              <p>Kids</p>
+              <div className="checkbox-group">
+                <div><input type="checkbox" name="size" onChange={handleSize} value="2T" /> 2T</div>
+                <div><input type="checkbox" name="size" onChange={handleSize} value="3T" /> 3T</div>
+                <div> <input type="checkbox" name="size" onChange={handleSize} value="4T" /> 4T</div>
+                <div> <input type="checkbox" name="size" onChange={handleSize} value="5T" /> 5T</div>
+                <div> <input type="checkbox" name="size" onChange={handleSize} value="6" /> 6</div>
+                <div> <input type="checkbox" name="size" onChange={handleSize} value="7" /> 7</div>
+              </div>
+              <br></br>
+
               <br></br>
               <p>Shoes</p>
               <div className="checkbox-group">
