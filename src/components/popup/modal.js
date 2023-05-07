@@ -1,8 +1,6 @@
 import './modal.css'
 
 export default function Modal(props) {
-
-    console.log(props)
     
     const handleCancel = () => {
         props.handleCancelEvent();
